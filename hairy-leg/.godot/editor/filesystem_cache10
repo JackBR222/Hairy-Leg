@@ -1,7 +1,6 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1776210650
-icon.svg::CompressedTexture2D::6720089360974640253::1774924947::1774989484::1::::<><><>0<>0<>4d0ab324f8c91da1bc5015a4e5efa347<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-MenuButtons.gd::GDScript::8636180013093631720::1775690213::0::1::::<>CanvasLayer<><>0<>0<><>::
+::res://::1776798460
+icon.svg::CompressedTexture2D::6720089360974640253::1774924947::1776280720::1::::<><><>0<>0<>f94f3e707099d9a71473167c9044601d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex::
 ::res://addons/::1775673588
 ::res://addons/dialogic/::1775673596
 plugin.cfg::TextFile::-1::1775673588::0::1::::<><><>0<>0<><>::
@@ -635,14 +634,29 @@ RE2 OST - Tyrant.mp3::AudioStreamMP3::5321938538561982471::1774924947::177498948
 ::res://audio/sounds/::1774989484
 footstep_concrete.mp3::AudioStreamMP3::1547450117884948953::1774924947::1774989484::1::::<><><>0<>0<>8a8230be1514a8c2967fe00f08383b53<>res://.godot/imported/footstep_concrete.mp3-e191eb635120a10e40dd6164ca733de8.mp3str::
 footstep_grass.mp3::AudioStreamMP3::457589395099451246::1774924947::1774989484::1::::<><><>0<>0<>5076d428be4b9b062c84a12cfb260bce<>res://.godot/imported/footstep_grass.mp3-a158085f4e2cc0cbbe12e7ee62e0c025.mp3str::
-::res://dialogue/::1776199626
-testDoor.dtl::Resource/DialogicTimeline::5601635080316144973::1776199626::0::1::::<><>uid://j7ym07anlusi<>0<>0<><>::
+::res://dialogue/::1776612714
+::res://dialogue/test/::1776612714
 test.dtl::Resource/DialogicTimeline::563991620132406339::1775679051::0::1::::<><>uid://j7ym07anlusi<>0<>0<><>::
-::res://models/::1776205365
+testDoor2Keys.dtl::Resource/DialogicTimeline::5281121125439785058::1776372822::0::1::::<><>uid://j7ym07anlusi<>0<>0<><>::
+testDoor.dtl::Resource/DialogicTimeline::5601635080316144973::1776612647::0::1::::<><>uid://j7ym07anlusi<>0<>0<><>::
+testDoorCheckPoint.dtl::Resource/DialogicTimeline::2150684169026646275::1776612714::0::1::::<><>uid://j7ym07anlusi<>0<>0<><>::
+::res://models/::1776796978
 Figner.fbx::PackedScene::9050848540579193212::1776205174::1776205193::1::::<><><>0<>0<>56263ae873c29fea51cf98df5c20a3c5<>res://.godot/imported/Figner.fbx-ec6267a788ffee7560f294a30bf228b3.scn::
 Figner_Texture.png::CompressedTexture2D::7654669411325123342::1776205208::1776205365::1::::<><><>0<>0<>6e5a9ff71e9d6ae04941a3529e66b551<>res://.godot/imported/Figner_Texture.png-e54f89cbf4c71cffee9db0dd4f5c4fd4.s3tc.ctex::
 Perna Cabeluda.fbx::PackedScene::726459087249054723::1776110786::1776110875::1::::<><><>0<>0<>e510ee42d12f4ed709bb2f3fcc2361a0<>res://.godot/imported/Perna Cabeluda.fbx-8f56fca3736ddfc569ae342346ab5426.scn::uid://dpxclh50up8cf::::res://models/Perna_texture.png
 Perna_texture.png::CompressedTexture2D::8259716886882474149::1776110791::1776110876::1::::<><><>0<>0<>71385d6c744b631f8c312f43ea491665<>res://.godot/imported/Perna_texture.png-41a7ed209b6506b4a20d5a68bcab8e99.s3tc.ctex::
+::res://models/map/::1776798636
+CasaMendigo.fbx::PackedScene::4404170009141505656::1776797868::1776797885::1::::<><><>0<>0<>f42edabde2dc6307fc57654413142f3a<>res://.godot/imported/CasaMendigo.fbx-00948bdc6f5f135a1046c3d613498ed8.scn::uid://dgkjs3o4a2f8i::::res://models/map/Casa_mendigo.png
+Casa_mendigo.png::CompressedTexture2D::7601618981273042806::1776797883::1776797886::1::::<><><>0<>0<>b9c7c2eb2dd8cd240b59fb7511b5ebe9<>res://.godot/imported/Casa_mendigo.png-6865c67fe0b1955223536d23aceba5a2.s3tc.ctex::
+Guarita.fbx::PackedScene::5216553150214162821::1776796981::1776796991::1::::<><><>0<>0<>9f2858c719aac22f2da16329e4572cc5<>res://.godot/imported/Guarita.fbx-6783e4b3ea83a014580ce3c15fd7197d.scn::
+Guarita_texture.png::CompressedTexture2D::4182846254381350013::1776796989::1776797166::1::::<><><>0<>0<>e79eb65738f532689397ba791977bda8<>res://.godot/imported/Guarita_texture.png-589fbd567f1d81480cfae9daf9813e9b.s3tc.ctex::
+Guarita.tscn::PackedScene::9191733306731039621::1776797725::0::1::::<><><>0<>0<><>::uid://cgk64rxfee3gj::::res://models/map/Guarita.fbx<>uid://b0ug4p5kux37v::::res://models/map/Guarita_texture.png
+CasaMendigo.tscn::PackedScene::4203490710690019657::1776798586::0::1::::<><><>0<>0<><>::uid://b30obiki5yff1::::res://models/map/CasaMendigo.fbx
+::res://models/map/textures/::1776798661
+Concreto.png::CompressedTexture2D::3874014673134698699::1776798655::1776798715::1::::<><><>0<>0<>16de00f1448fecc694afa4aeb74a2e35<>res://.godot/imported/Concreto.png-f8a784cb121e127773dc0fcc0901a018.s3tc.ctex::
+Concreto_ Vermelho.png::CompressedTexture2D::5529621347001046253::1776798661::1776798664::1::::<><><>0<>0<>3144becbe4009d6bcb248e4475083d7b<>res://.godot/imported/Concreto_ Vermelho.png-2f0b132aa814816ba6155eae06698137.ctex::
+Grama_Texture.png::CompressedTexture2D::9149917816305041307::1776798639::1776798680::1::::<><><>0<>0<>d1e4538dea8d9af0e6627c7948a957f4<>res://.godot/imported/Grama_Texture.png-6e2fe721c94f352c2fda48fe7b86c8dd.s3tc.ctex::
+Piso_pedras.png::CompressedTexture2D::6332626189778434418::1776798649::1776798664::1::::<><><>0<>0<>9c66dfb37ae9a05417717650d6c3f2cb<>res://.godot/imported/Piso_pedras.png-f9ca49083f915be0970c37201bb74aa2.ctex::
 ::res://models/placeholder/::1776022223
 claire.obj::Mesh::4394885570556898209::1774924947::1776022223::1::::<><><>0<>0<>da328ce589f8eae88c1ec532197d6aa8<>res://.godot/imported/claire.obj-05e9616f0ec62a29cc2a9e439164b240.mesh<*>res://.godot/imported/claire.obj-05e9616f0ec62a29cc2a9e439164b240.mesh::
 EM12B.obj::Mesh::5783441966927666683::1774924947::1776022223::1::::<><><>0<>0<>651cb64cc6454717508c7741a87e33ff<>res://.godot/imported/EM12B.obj-96dc38ddf80a1ba8aacdc13d56efe85f.mesh<*>res://.godot/imported/EM12B.obj-96dc38ddf80a1ba8aacdc13d56efe85f.mesh::
@@ -650,29 +664,43 @@ EM12B.png::CompressedTexture2D::7947811787135492267::1774924947::1776022223::1::
 EMD49.png::CompressedTexture2D::104125775315825250::1774924947::1776022223::1::::<><><>0<>0<>2eb7812e7fadca96cf51af91057ed6eb<>res://.godot/imported/EMD49.png-f466a5ca07ef9fe83874ad517b4de3ac.s3tc.ctex::
 leon.obj::Mesh::5175527392521371867::1774924947::1776022223::1::::<><><>0<>0<>7eb5617471fe5d98d4d5de30908b8f94<>res://.godot/imported/leon.obj-7d5b95b6c850cc9463696634dce6132f.mesh<*>res://.godot/imported/leon.obj-7d5b95b6c850cc9463696634dce6132f.mesh::
 leon.png::CompressedTexture2D::1673675351927333371::1774924947::1776022223::1::::<><><>0<>0<>67571526ee3a374ef146bce1e37e49ec<>res://.godot/imported/leon.png-7aac15772763163b0bbe1180e464377d.s3tc.ctex::
-::res://prefabs/::1776207787
-player.tscn::PackedScene::1765247756516675595::1776207787::0::1::::<><><>0<>0<><>::uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd
-::res://scenes/::1776210646
-MainMenu.tscn::PackedScene::1908596307392109831::1776022222::0::1::::<><><>0<>0<><>::uid://dvbovgiro50ie::::res://MenuButtons.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://x30gn6taokf0::::res://models/placeholder/leon.png<>uid://cf0cgec0tg044::::res://models/placeholder/leon.obj<>uid://dlh8kftyao7dv::::res://models/placeholder/EM12B.png<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3
-::res://scenes/test/::1776210640
-EnemyAITest.scn::PackedScene::3199651183033636969::1776210609::0::1::::<><><>0<>0<><>::uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://0fdmw1np2u7t::::res://prefabs/player.tscn<>uid://c3lsvvvnai66p::::res://scripts/enemy_AI.gd<>uid://dpxclh50up8cf::::res://models/Perna_texture.png<>uid://ch28syaqihthv::::res://audio/RE2 OST - Tyrant.mp3<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://cxvt0h02io3br::::res://scripts/test_scripts/AreaTrigger.gd
-EnemyAITest.tscn::PackedScene::8036085970750010640::1776194121::0::1::::<><><>0<>0<><>::uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd<>uid://dpxclh50up8cf::::res://models/Perna_texture.png<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://dlh8kftyao7dv::::res://models/placeholder/EM12B.png<>uid://c3lsvvvnai66p::::res://scripts/enemy_AI.gd<>uid://ch28syaqihthv::::res://audio/RE2 OST - Tyrant.mp3<>uid://cxvt0h02io3br::::res://scripts/test_scripts/AreaTrigger.gd
-FloorTest.scn::PackedScene::7764014281628767454::1776210596::0::1::::<><><>0<>0<><>::uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd
-FloorTest.tscn::PackedScene::8342920558503820875::1776194121::0::1::::<><><>0<>0<><>::uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://x30gn6taokf0::::res://models/placeholder/leon.png<>uid://cf0cgec0tg044::::res://models/placeholder/leon.obj<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd
-InteractTest.tscn::PackedScene::1101262554264270696::1776210646::0::1::::<><><>0<>0<><>::uid://cvn1mbspcs8gg::::res://sprites/vignette.png<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://0fdmw1np2u7t::::res://prefabs/player.tscn<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://uqmuwnp5deeq::::res://scripts/Item.gd<>uid://cxmn0pa1crnmp::::res://scripts/Door.gd<>uid://0p1dce0j6uif::::res://scripts/test_scripts/DialogueTest.gd<>uid://cgqjw3mnl16qx::::res://scripts/HideSpot.gd
-::res://scripts/::1776210596
-Door.gd::GDScript::6412792058898180163::1776199500::0::1::::Door<>StaticBody3D<><>0<>0<><>::
-enemy_AI.gd::GDScript::6761968688109823177::1776195034::0::1::::<>CharacterBody3D<><>0<>0<><>::
-HideSpot.gd::GDScript::5227591703478034259::1775681395::0::1::::HideSpot<>StaticBody3D<><>0<>0<><>::
-Item.gd::GDScript::1437572412934804288::1776199203::0::1::::Item<>RigidBody3D<><>0<>0<><>::
-Player.gd::GDScript::4237385067310444509::1776205998::0::1::::Player<>CharacterBody3D<><>0<>0<><>::
-PlayerCamera.gd::GDScript::2632353404486699755::1776210596::0::1::::<>Camera3D<><>0<>0<><>::
-PlayerFootsteps.gd::GDScript::9041698406040641258::1776206320::0::1::::<>AudioStreamPlayer3D<><>0<>0<><>::
-::res://scripts/shaders/::1776197216
-PS1 Model.gdshader::Shader::6687005222678457069::1776197216::0::1::::<><><>0<>0<><>::
-::res://scripts/test_scripts/::1776200714
+::res://prefabs/::1776798435
+canvas_layer.tscn::PackedScene::7432826768885648381::1776612879::0::1::::<><><>0<>0<><>::uid://cvn1mbspcs8gg::::res://sprites/vignette.png<>uid://cqtr3kwn8vr7p::::res://scripts/FadeController.gd
+hide_spot.tscn::PackedScene::8121934417150291641::1776562407::0::1::::<><><>0<>0<><>::uid://cgqjw3mnl16qx::::res://scripts/HideSpot.gd<>uid://bju4hpnvwb1kn::::res://sprites/PC.png<>uid://dfu12mop0y4tc::::res://scripts/IconChangeController.gd<>uid://c4slituar5jut::::res://sprites/Xbox.png<>uid://dhbggw2pi4xcg::::res://sprites/PS5.png<>uid://cqeykpfkkuc1x::::res://sprites/Nintendo.png
+Player.tscn::PackedScene::1765247756516675595::1776798435::0::1::::<><><>0<>0<><>::uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd
+::res://scenes/::1776798589
+GameOver.tscn::PackedScene::2121324830519638831::1776612295::0::1::::<><><>0<>0<><>::uid://dvbovgiro50ie::::res://scripts/MenuButtons.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://x30gn6taokf0::::res://models/placeholder/leon.png<>uid://cf0cgec0tg044::::res://models/placeholder/leon.obj<>uid://dlh8kftyao7dv::::res://models/placeholder/EM12B.png<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3
+MainMenu.tscn::PackedScene::1908596307392109831::1776613496::0::1::::<><><>0<>0<><>::uid://dvbovgiro50ie::::res://scripts/MenuButtons.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://x30gn6taokf0::::res://models/placeholder/leon.png<>uid://cf0cgec0tg044::::res://models/placeholder/leon.obj<>uid://dlh8kftyao7dv::::res://models/placeholder/EM12B.png<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3
+Game.scn::PackedScene::3516679996313243470::1776798589::0::1::::<><><>0<>0<><>::uid://0fdmw1np2u7t::::res://prefabs/Player.tscn<>uid://d37srfmdaaxu8::::res://models/map/Guarita.tscn<>uid://b05g432x15lk0::::res://models/map/CasaMendigo.tscn<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3
+::res://scenes/test/::1776798439
+CheckpointTest.scn::PackedScene::314660296430522783::1776633767::0::1::::<><><>0<>0<><>::uid://dd5rtn88u1on2::::res://prefabs/canvas_layer.tscn<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd<>uid://c3lsvvvnai66p::::res://scripts/enemy_AI.gd<>uid://dpxclh50up8cf::::res://models/Perna_texture.png<>uid://ch28syaqihthv::::res://audio/RE2 OST - Tyrant.mp3<>uid://c20i5i1517ilh::::res://icon.svg<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://uqmuwnp5deeq::::res://scripts/Item.gd<>uid://bju4hpnvwb1kn::::res://sprites/PC.png<>uid://dfu12mop0y4tc::::res://scripts/IconChangeController.gd<>uid://c4slituar5jut::::res://sprites/Xbox.png<>uid://dhbggw2pi4xcg::::res://sprites/PS5.png<>uid://cqeykpfkkuc1x::::res://sprites/Nintendo.png<>uid://8lg41k1kg8a8::::res://sprites/ShinyAnim.tres<>uid://cxmn0pa1crnmp::::res://scripts/Door.gd
+CheckpointTest_1.scn::PackedScene::8398460708261572258::1776613017::0::1::::<><><>0<>0<><>::uid://dd5rtn88u1on2::::res://prefabs/canvas_layer.tscn<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd<>uid://c3lsvvvnai66p::::res://scripts/enemy_AI.gd<>uid://dpxclh50up8cf::::res://models/Perna_texture.png<>uid://ch28syaqihthv::::res://audio/RE2 OST - Tyrant.mp3<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://uqmuwnp5deeq::::res://scripts/Item.gd<>uid://bju4hpnvwb1kn::::res://sprites/PC.png<>uid://dfu12mop0y4tc::::res://scripts/IconChangeController.gd<>uid://c4slituar5jut::::res://sprites/Xbox.png<>uid://dhbggw2pi4xcg::::res://sprites/PS5.png<>uid://cqeykpfkkuc1x::::res://sprites/Nintendo.png<>uid://8lg41k1kg8a8::::res://sprites/ShinyAnim.tres<>uid://cxmn0pa1crnmp::::res://scripts/Door.gd
+EnemyAITest.scn::PackedScene::3199651183033636969::1776613018::0::1::::<><><>0<>0<><>::uid://dd5rtn88u1on2::::res://prefabs/canvas_layer.tscn<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd<>uid://c3lsvvvnai66p::::res://scripts/enemy_AI.gd<>uid://dpxclh50up8cf::::res://models/Perna_texture.png<>uid://ch28syaqihthv::::res://audio/RE2 OST - Tyrant.mp3<>uid://dnylcqv44an0d::::res://prefabs/hide_spot.tscn<>uid://cxvt0h02io3br::::res://scripts/test_scripts/AreaTrigger.gd
+FloorTest.scn::PackedScene::7764014281628767454::1776798439::0::1::::<><><>0<>0<><>::uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3
+InteractTest.tscn::PackedScene::1101262554264270696::1776612882::0::1::::<><><>0<>0<><>::uid://cvn1mbspcs8gg::::res://sprites/vignette.png<>uid://bdreqgh6sqyrj::::res://scripts/PlayerCamera.gd<>uid://cqtr3kwn8vr7p::::res://scripts/FadeController.gd<>uid://b1mvd3uenyu1j::::res://scripts/Player.gd<>uid://60gruf8hvf0y::::res://audio/RE2 OST - Front Hall.mp3<>uid://c2jh875a4nmd6::::res://scripts/shaders/PS1 Model.gdshader<>uid://dhb8j0udchakc::::res://models/Figner_Texture.png<>uid://uqmuwnp5deeq::::res://scripts/Item.gd<>uid://d124pmhe32yqs::::res://scripts/PlayerFootsteps.gd<>uid://cxmn0pa1crnmp::::res://scripts/Door.gd<>uid://dfu12mop0y4tc::::res://scripts/IconChangeController.gd<>uid://0p1dce0j6uif::::res://scripts/test_scripts/DialogueTest.gd<>uid://cgqjw3mnl16qx::::res://scripts/HideSpot.gd<>uid://bju4hpnvwb1kn::::res://sprites/PC.png<>uid://c4slituar5jut::::res://sprites/Xbox.png<>uid://dhbggw2pi4xcg::::res://sprites/PS5.png<>uid://cqeykpfkkuc1x::::res://sprites/Nintendo.png<>uid://8lg41k1kg8a8::::res://sprites/ShinyAnim.tres
+::res://scripts/::1776795479
+Checkpoint.gd::GDScript::3911458915128530833::1776613496::0::1::::<>Node<><>0<>0<><>::
+Door.gd::GDScript::6412792058898180163::1776612471::0::1::::Door<>StaticBody3D<><>0<>0<><>::
+enemy_AI.gd::GDScript::6761968688109823177::1776612295::0::1::::<>CharacterBody3D<><>0<>0<><>::
+FadeController.gd::GDScript::5936168793883027307::1776559538::0::1::::<>CanvasItem<><>0<>0<><>::
+HideSpot.gd::GDScript::5227591703478034259::1776612243::0::1::::HideSpot<>StaticBody3D<><>0<>0<><>::
+IconChangeController.gd::GDScript::7553121335221401644::1776281365::0::1::::<>Sprite3D<><>0<>0<><>::
+Item.gd::GDScript::1437572412934804288::1776462474::0::1::::Item<>RigidBody3D<><>0<>0<><>::
+MenuButtons.gd::GDScript::8636180013093631720::1776613098::0::1::::<>CanvasLayer<><>0<>0<><>::
+Player.gd::GDScript::4237385067310444509::1776795063::0::1::::Player<>CharacterBody3D<><>0<>0<><>::
+PlayerCamera.gd::GDScript::2632353404486699755::1776795479::0::1::::<>Camera3D<><>0<>0<><>::
+PlayerFootsteps.gd::GDScript::9041698406040641258::1776561022::0::1::::<>AudioStreamPlayer3D<><>0<>0<><>::
+::res://scripts/shaders/::1776794974
+PS1 Model.gdshader::Shader::6687005222678457069::1776794974::0::1::::<><><>0<>0<><>::
+::res://scripts/test_scripts/::1776371374
 AreaTrigger.gd::GDScript::6431735379127978675::1775687733::0::1::::<>Area3D<><>0<>0<><>::
-DialogueTest.gd::GDScript::1787270868830421389::1776200714::0::1::::<>StaticBody3D<><>0<>0<><>::
-::res://sprites/::1775688693
+DialogueTest.gd::GDScript::1787270868830421389::1776371374::0::1::::<>StaticBody3D<><>0<>0<><>::
+::res://sprites/::1776798236
 HaloWhite.png::CompressedTexture2D::7669994613964056425::1774924947::1775688693::1::::<><><>0<>0<>b725c3faeea6e70dcb958172ec768a59<>res://.godot/imported/HaloWhite.png-f7ad94f6ff2492d481b90809e7f2e359.s3tc.ctex::
+Nintendo.png::CompressedTexture2D::5905596238419184595::1776463069::1776463070::1::::<><><>0<>0<>ce158ddc1f3cbdc5a97728b2158559a7<>res://.godot/imported/Nintendo.png-8051a7f084d2f6d478ff36f480dcf688.ctex::
+PC.png::CompressedTexture2D::3061181933780472337::1776462996::1776463108::1::::<><><>0<>0<>b89e9cfa8da4251623de1db42afdc4b5<>res://.godot/imported/PC.png-4d47c9e1d9249d8e10f840b2815aab81.s3tc.ctex::
+PS5.png::CompressedTexture2D::7653024548936428718::1776463046::1776463048::1::::<><><>0<>0<>609a03a695793c7741fe7eed5e180f76<>res://.godot/imported/PS5.png-6eac1522ebe906e07681bb73d132ddcf.ctex::
+Shiny.png::CompressedTexture2D::1134880078923054533::1776462566::1776462567::1::::<><><>0<>0<>4a98699a5e565ee6ed0e6cc936d37529<>res://.godot/imported/Shiny.png-4dff85b697c00b0ffdae74fa94d6138e.s3tc.ctex::
+ShinyAnim.tres::SpriteFrames::2339357467579673269::1776798236::0::1::::<><><>0<>0<><>::uid://qf0krksrmc5r::::res://sprites/Shiny.png
 vignette.png::CompressedTexture2D::6275244146941225574::1775680213::1775680214::1::::<><><>0<>0<>546c27f112292735f1bc74cb4ed90034<>res://.godot/imported/vignette.png-6a1c8ae6e42aed1a80d3f341287c2df8.ctex::
+Xbox.png::CompressedTexture2D::6846159834597536479::1776463020::1776463048::1::::<><><>0<>0<>3eb83cb128ff5b951983fe31aaa3d01a<>res://.godot/imported/Xbox.png-962ecb932b9aa25802acb62778d686e0.ctex::

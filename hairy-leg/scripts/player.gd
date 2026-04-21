@@ -17,12 +17,20 @@ var input_forward := 0.0
 var input_running := false
 
 # NODES
-@onready var interaction_ray: RayCast3D = $Interact3D
-@onready var hold_position: Node3D = $HoldPosition
+@onready var interaction_rays: Array[RayCast3D] = [
+	$InteractTop,
+	$InteractMid,
+	$InteractBottom
+]
+
+@onready var hold_position: Node3D = $Figner/Skeleton3D/BoneAttachment3D/HoldPosition
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
-# ITENS
-var held_item: Item = null
+# ITENS / INTERAÇÕES
+var held_item: Node = null
+
+# ALVO
+var current_target: Node = null
 
 # QUICK TURN
 @export var quick_turn_speed: float = 720.0
@@ -33,6 +41,7 @@ var target_rotation_y: float = 0.0
 var current_anim: String = ""
 func get_current_anim() -> String:
 	return current_anim
+
 
 # READY
 func _ready() -> void:
@@ -53,6 +62,51 @@ func _physics_process(delta: float) -> void:
 	_update_animation()
 
 	move_and_slide()
+
+
+# DETECÇÃO CONTÍNUA
+func _process(_delta: float) -> void:
+	_update_target()
+
+
+# SISTEMA DE ALVO
+func _update_target() -> void:
+	var new_target := _get_best_target()
+
+	if new_target != current_target:
+		_clear_target()
+
+		current_target = new_target
+
+		if current_target and current_target.has_method("set_targeted"):
+			current_target.set_targeted(true)
+
+
+func _get_best_target() -> Node:
+	var best_item: Node = null
+	var best_distance := INF
+
+	for ray in interaction_rays:
+		if not ray.is_colliding():
+			continue
+
+		var collider = ray.get_collider()
+
+		if collider and collider.has_method("interact"):
+			var dist = global_position.distance_to(collider.global_position)
+
+			if dist < best_distance:
+				best_distance = dist
+				best_item = collider
+
+	return best_item
+
+
+func _clear_target() -> void:
+	if current_target and current_target.has_method("set_targeted"):
+		current_target.set_targeted(false)
+
+	current_target = null
 
 
 # INPUT
@@ -134,7 +188,6 @@ func _update_animation() -> void:
 	var moving_backward = input_forward < -0.1
 	var turning = abs(input_turn) > 0.1
 
-	# CORRER (somente pra frente)
 	if moving_forward and input_running:
 		_play_anim("Figner|Run")
 	elif moving_forward:
@@ -169,15 +222,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _handle_interaction() -> void:
-	if not interaction_ray.is_colliding():
-		return
-
-	var collider = interaction_ray.get_collider()
-	if collider.has_method("interact"):
-		collider.interact(self)
+	if current_target and current_target.has_method("interact"):
+		current_target.interact(self)
 
 
-# CONGELAR INPUT
+# CONTROLE DE INPUT
 func freeze_input() -> void:
 	input_enabled = false
 	input_turn = 0.0

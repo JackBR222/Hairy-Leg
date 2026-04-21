@@ -1,15 +1,16 @@
 [gd_scene format=4 uid="uid://0fdmw1np2u7t"]
 
-[ext_resource type="Script" uid="uid://b1mvd3uenyu1j" path="res://scripts/Player.gd" id="1_1txc5"]
-[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_ht1c8"]
-[ext_resource type="Texture2D" uid="uid://dhb8j0udchakc" path="res://models/Figner_Texture.png" id="3_g2jcq"]
-[ext_resource type="Script" uid="uid://d124pmhe32yqs" path="res://scripts/PlayerFootsteps.gd" id="4_u51tk"]
+[ext_resource type="Script" uid="uid://bdreqgh6sqyrj" path="res://scripts/PlayerCamera.gd" id="1_wuy1y"]
+[ext_resource type="Script" uid="uid://b1mvd3uenyu1j" path="res://scripts/Player.gd" id="2_1nynx"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="3_64pgi"]
+[ext_resource type="Texture2D" uid="uid://dhb8j0udchakc" path="res://models/Figner_Texture.png" id="4_0ep8a"]
+[ext_resource type="Script" uid="uid://d124pmhe32yqs" path="res://scripts/PlayerFootsteps.gd" id="5_70wo7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy7f6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_30wui"]
 render_priority = 0
-shader = ExtResource("2_ht1c8")
+shader = ExtResource("3_64pgi")
 shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("3_g2jcq")
+shader_parameter/albedo = ExtResource("4_0ep8a")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(320, 240)
@@ -21,7 +22,7 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dy7f6"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_byaan"]
 resource_name = "Cube_001"
 _surfaces = [{
 "aabb": AABB(-0.079036415, -0.045799676, -0.16187853, 0.15807283, 0.037706926, 0.17591019),
@@ -41,7 +42,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_x42pv"]
+[sub_resource type="Skin" id="Skin_13jjd"]
 resource_name = "Skin"
 bind_count = 33
 bind/0/name = &"mixamorig_Hips"
@@ -144,7 +145,7 @@ bind/32/name = &"mixamorig_RightToe_End"
 bind/32/bone = -1
 bind/32/pose = Transform3D(-313.89658, 10.344433, -19.62874, -10.968969, -314.33746, 9.754976, -19.286688, 10.414889, 313.91556, -6.525543, -12.680861, 50.67699)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_uacia"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n075y"]
 height = 3.3241959
 radius = 0.48242188
 
@@ -1841,7 +1842,7 @@ tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = PackedFloat32Array(0, 1, -0.015262346, -0.09563809, -0.13687783, 0.9858422, 0.875, 1, -0.015256872, -0.095633514, -0.13687128, 0.98584366, 0.9166667, 1, -0.015878325, -0.096158236, -0.13761683, 0.985679, 1, 1, -0.015262165, -0.095638074, -0.13687775, 0.9858422)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gyov6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6mlc"]
 _data = {
 &"Figner|Backward Move": SubResource("Animation_r8gw7"),
 &"Figner|Forward Move": SubResource("Animation_gmm70"),
@@ -1852,15 +1853,23 @@ _data = {
 &"Figner|Turn Right": SubResource("Animation_lenmp")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=817097093]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-script = ExtResource("1_1txc5")
+[node name="Player" type="Node3D" unique_id=1652708810]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1862007797]
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=836871519 node_paths=PackedStringArray("player")]
+script = ExtResource("1_wuy1y")
+player = NodePath("../../Player")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=517430818]
+script = ExtResource("2_1nynx")
 quick_turn_speed = 270.0
 
-[node name="Figner" type="Node3D" parent="." unique_id=966760651]
+[node name="Figner" type="Node3D" parent="Player" unique_id=608764405]
 transform = Transform3D(-0.05999999, 0, -5.2453646e-09, 0, 0.059999987, 0, 5.245366e-09, 0, -0.059999976, 0, -1.076, 0.1)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Figner" unique_id=667238182]
+[node name="Skeleton3D" type="Skeleton3D" parent="Player/Figner" unique_id=761425142]
 bones/0/name = "mixamorig_Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.9994188, -0.006315354, 0.03349952, 0.0074478113, 0.9994013, -0.033788845, -0.03326607, 0.034018703, 0.9988674, -0.029950032, 33.80858, -0.7304627)
@@ -2128,31 +2137,34 @@ bones/37/position = Vector3(0, 2.4054055, 0)
 bones/37/rotation = Quaternion(0, 0, 0, 1)
 bones/37/scale = Vector3(1, 1, 1)
 
-[node name="Cube_005" type="MeshInstance3D" parent="Figner/Skeleton3D" unique_id=544534401]
-material_override = SubResource("ShaderMaterial_dy7f6")
-mesh = SubResource("ArrayMesh_dy7f6")
-skin = SubResource("Skin_x42pv")
+[node name="Cube_005" type="MeshInstance3D" parent="Player/Figner/Skeleton3D" unique_id=731597985]
+material_override = SubResource("ShaderMaterial_30wui")
+mesh = SubResource("ArrayMesh_byaan")
+skin = SubResource("Skin_13jjd")
 skeleton = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=479108409]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Figner/Skeleton3D" unique_id=7009748]
+transform = Transform3D(0.9583666, 0.2678057, 0.09905847, 0.282021, -0.8334866, -0.47514528, -0.044682465, 0.4833004, -0.87431324, -4.0993075, 30.172361, 7.944951)
+bone_name = "mixamorig_RightHand"
+bone_idx = 20
+
+[node name="HoldPosition" type="Node3D" parent="Player/Figner/Skeleton3D/BoneAttachment3D" unique_id=1163609045]
+transform = Transform3D(16.666677, 0, 0, 0, 16.66668, 0, 0, 0, 16.666677, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=770858596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66464376, 0)
-shape = SubResource("CylinderShape3D_uacia")
+shape = SubResource("CylinderShape3D_n075y")
 
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1382755450 node_paths=PackedStringArray("player")]
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player" unique_id=639677382 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.99597347, 0)
-script = ExtResource("4_u51tk")
+script = ExtResource("5_70wo7")
 player = NodePath("..")
-walk_forward_step_interval = 0.5
-walk_backward_step_interval = 0.8
-turn_left_step_interval = 0.45
-turn_right_step_interval = 0.45
-turn_180_step_interval = 0.25
 
-[node name="RayCast3D" type="RayCast3D" parent="FootstepPlayer" unique_id=1940418080]
+[node name="RayCast3D" type="RayCast3D" parent="Player/FootstepPlayer" unique_id=786616775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99597347, 0)
 target_position = Vector3(0, -1.5, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=231089624]
+[node name="SpotLight3D" type="SpotLight3D" parent="Player" unique_id=1986813837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24272634, 1.3597245, -0.33600384)
 light_color = Color(1, 0.94509804, 0.8392157, 1)
 light_energy = 25.0
@@ -2162,12 +2174,22 @@ shadow_enabled = true
 spot_range = 6.0
 spot_angle = 40.52274
 
-[node name="HoldPosition" type="Node3D" parent="." unique_id=320817478]
-
-[node name="Interact3D" type="RayCast3D" parent="." unique_id=1444034050]
+[node name="InteractTop" type="RayCast3D" parent="Player" unique_id=272621879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 target_position = Vector3(0, 0, -1.2)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=967039851]
-libraries/ = SubResource("AnimationLibrary_gyov6")
+[node name="InteractMid" type="RayCast3D" parent="Player" unique_id=991798787]
+target_position = Vector3(0, 0, -1.2)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="InteractBottom" type="RayCast3D" parent="Player" unique_id=1139865537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+target_position = Vector3(0, 0, -1.2)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=1164923713]
+libraries/ = SubResource("AnimationLibrary_l6mlc")

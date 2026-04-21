@@ -1,0 +1,11 @@
+if {player_item_type} == "red" or {player_item_type} == "blue":
+	Você abriu uma tranca!
+	set {multi_key_door} += 1.0
+	[signal arg="consume_item"]
+if {multi_key_door} == 2.0:
+	Porta Aberta!
+	[signal arg="unlock_door"]
+elif {multi_key_door} == 1.0:
+	Ainda falta uma tranca...
+else:
+	Tem duas trancas na porta...

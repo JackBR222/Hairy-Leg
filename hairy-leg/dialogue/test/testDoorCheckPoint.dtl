@@ -1,5 +1,7 @@
 if {player_item_type} == "red":
 	Item certo!
+	[signal arg="unlock_door"]
+	[signal arg="checkpoint_test"]
 elif {player_item_type} == "none":
 	Sem item.
 else:

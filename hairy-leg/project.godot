@@ -11,26 +11,66 @@ config_version=5
 [application]
 
 config/name="Hairy Leg"
-run/main_scene="uid://dq4mxhgfl3a56"
+run/main_scene="uid://2gskjq56nigd"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Dialogic="*uid://ds2q0uclmolvu"
+Checkpoint="*uid://bvy0flli3ayi8"
 
 [dialogic]
 
 directories/dch_directory={}
 directories/dtl_directory={
-"test": "res://dialogue/test.dtl",
-"testDoor": "res://dialogue/testDoor.dtl"
+"test": "res://dialogue/test/test.dtl",
+"testDoor": "res://dialogue/test/testDoor.dtl",
+"testDoor2Keys": "res://dialogue/test/testDoor2Keys.dtl",
+"testDoorCheckPoint": "res://dialogue/test/testDoorCheckPoint.dtl"
 }
 layout/style_directory={}
 variables={
+"current_door_id": "",
+"multi_key_door": 0,
 "player_item_type": "none"
 }
 glossary/default_case_sensitive=true
+extensions_folder="res://addons/dialogic_additions"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
+layout/style_list=[]
+layout/default_style="Default"
 
 [display]
 

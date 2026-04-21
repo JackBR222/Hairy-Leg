@@ -1,43 +1,75 @@
 extends StaticBody3D
 class_name HideSpot
 
-@export var hide_point: Node3D
-@export var exit_position: Node3D
-@export var vignette: CanvasItem
 @export var player_camera: Camera3D
 
-# CONFIG DO EFEITO
 @export var hidden_distance: float = 2
 @export var hidden_height: float = 2.5
 @export var hidden_rotation_speed: float = 45.0
 
-var hidden_player: Player = null
+@export var interaction_cooldown: float = 1.0
 
-# Backup dos valores
+@onready var exit_position: Node3D = $ExitPosition
+@onready var hide_point: MeshInstance3D = _find_hide_point()
+@onready var vignette = get_tree().current_scene.get_node("CanvasLayer/Vignette")
+@onready var icon: Sprite3D = $InteractionIcon
+
+var hidden_player: Player = null
+var player_footsteps: Node = null
+
 var original_distance: float
 var original_height: float
 var original_rotation_speed: float
 
+var can_interact: bool = true
+var is_targeted: bool = false
+
+
+# INIT 
 func _ready() -> void:
 	if vignette:
 		vignette.visible = false
 
+	if icon:
+		icon.visible = false
+
+
+func _find_hide_point() -> MeshInstance3D:
+	for child in get_children():
+		if child is MeshInstance3D:
+			return child
+	return null
+
+
+# INTERAÇÃO 
 func interact(player: Node) -> void:
-	if not player is Player:
+	if not player is Player or not can_interact:
 		return
 
-	if hidden_player != null:
-		return
+	can_interact = false
+	_start_interact_cooldown()
 
-	hide_player(player)
+	if hidden_player:
+		unhide_player()
+	else:
+		hide_player(player)
+
+
+func _start_interact_cooldown() -> void:
+	await get_tree().create_timer(interaction_cooldown).timeout
+	can_interact = true
+
+
+func set_targeted(value: bool) -> void:
+	is_targeted = value
+	if icon and hidden_player == null:
+		icon.visible = value
+
 
 # ESCONDER
 func hide_player(player: Player) -> void:
 	hidden_player = player
-	
-	print("Player se escondeu")
 
-	# Teleporte
 	if hide_point:
 		player.global_transform = hide_point.global_transform
 
@@ -48,41 +80,45 @@ func hide_player(player: Player) -> void:
 		push_warning("Camera3D não encontrada!")
 		return
 
-	# Salva valores
 	original_distance = player_camera.distance
 	original_height = player_camera.height
 	original_rotation_speed = player_camera.rotation_speed
 
-	# Aplica zoom + ajuste
 	player_camera.distance = hidden_distance
 	player_camera.height = hidden_height
 	player_camera.rotation_speed = hidden_rotation_speed
 
-	# TRAVA PLAYER DE VERDADE
 	player.input_enabled = false
 	player.velocity = Vector3.ZERO
-
-	# Desativa física completamente
 	player.set_physics_process(false)
 
-	# Desativa colisão
 	player.set_collision_layer(0)
 	player.set_collision_mask(0)
 
 	player.visible = false
 	player.is_hidden = true
 
-	# Vignette ON
+	player_footsteps = find_footstep_system(player)
+	if player_footsteps:
+		player_footsteps.force_stop_steps()
+
 	if vignette:
 		vignette.visible = true
 
-# INPUT GLOBAL PRA SAIR
+	if icon:
+		icon.visible = false
+
+
+# INPUT PARA SAIR
 func _unhandled_input(event: InputEvent) -> void:
 	if hidden_player == null:
 		return
 
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and can_interact:
+		can_interact = false
+		_start_interact_cooldown()
 		unhide_player()
+
 
 # SAIR
 func unhide_player() -> void:
@@ -90,20 +126,15 @@ func unhide_player() -> void:
 		return
 
 	var player = hidden_player
-	
-	print("Player saiu do esconderijo")
 
-	# Teleporte saída
 	if exit_position:
 		player.global_transform = exit_position.global_transform
 
-	# Restaura câmera
 	if player_camera:
 		player_camera.distance = original_distance
 		player_camera.height = original_height
 		player_camera.rotation_speed = original_rotation_speed
 
-	# REATIVA PLAYER
 	player.input_enabled = true
 	player.set_physics_process(true)
 
@@ -113,8 +144,34 @@ func unhide_player() -> void:
 	player.visible = true
 	player.is_hidden = false
 
-	# Vignette OFF
+	if player_footsteps:
+		player_footsteps.restore_steps()
+
 	if vignette:
 		vignette.visible = false
 
 	hidden_player = null
+
+	if icon and is_targeted:
+		icon.visible = true
+
+
+# CONTROLE DO SISTEMA DE PASSOS
+func find_footstep_system(player: Node) -> Node:
+	for child in player.get_children():
+		if child.has_method("force_stop_steps") and child.has_method("restore_steps"):
+			return child
+		var result = search_deep(child)
+		if result:
+			return result
+	return null
+
+
+func search_deep(node: Node) -> Node:
+	for child in node.get_children():
+		if child.has_method("force_stop_steps") and child.has_method("restore_steps"):
+			return child
+		var result = search_deep(child)
+		if result:
+			return result
+	return null

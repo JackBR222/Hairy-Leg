@@ -1,16 +1,11 @@
-res://scenes/FloorTest.scn
-res://scripts/player.gd
-res://scenes/EnemyAITest.scn
-res://scripts/enemy_AI.gd
-res://scripts/PlayerCamera.gd
+res://scenes/test/FloorTest.scn
 res://scripts/shaders/PS1 Model.gdshader
-res://dialogue/testDoor.dtl
-res://scenes/InteractTest.tscn
-res://scripts/Item.gd
-res://scripts/Door.gd
-res://scripts/test_scripts/DialogueTest.gd
 res://scripts/Player.gd
-res://scripts/PlayerFootsteps.gd
-res://prefabs/player.tscn
-res://scenes/test/InteractTest.tscn
-res://scenes/test/EnemyAITest.scn
+res://scripts/PlayerCamera.gd
+res://models/map/Guarita.tscn
+res://scenes/Game.scn
+res://models/map/CasaMendigo.tscn
+res://sprites/ShinyAnim.tres
+res://scripts/MenuButtons.gd
+res://scenes/GameOver.tscn
+res://scenes/MainMenu.tscn
