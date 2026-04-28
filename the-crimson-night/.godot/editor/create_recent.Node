@@ -1,0 +1,14 @@
+NavigationObstacle3D
+CollisionShape3D
+Node3D
+Label
+AudioStreamPlayer
+CanvasLayer
+Control
+Node
+HSlider
+CollisionPolygon3D
+BoneAttachment3D
+StaticBody3D
+NavigationRegion3D
+GridContainer

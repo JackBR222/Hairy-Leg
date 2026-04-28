@@ -1,0 +1,8 @@
+if {player_item_type} == "FuseBoxKey":
+	Abriu!
+	[signal arg="consume:FuseBoxKey"]
+	[signal arg="change_timeline_alt"]
+	[signal arg="change_model_alt"]
+else:
+	Uma caixa de fusíveis...
+	Ela está trancada.

@@ -1,5 +1,0 @@
-res://scenes/Game.scn
-res://scripts/shaders/PS1 Model.gdshader
-res://sprites/ShinyAnim.tres
-res://scripts/MainMenu.gd
-res://scripts/PauseMenu.gd
