@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://deasso1kimey1" path="res://models/map/import/Armazem 3.fbx" id="1_7i8fq"]
 [ext_resource type="Texture2D" uid="uid://dbwnsmqc4gku" path="res://models/map/area3/Armazem_texture 3.png" id="2_a54vc"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_b2psx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ac6c"]
+render_priority = 0
+shader = ExtResource("2_b2psx")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_a54vc")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2psx"]
 resource_name = "Armazem.001"
@@ -52,6 +62,7 @@ transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 
 [node name="Telhado Centro" parent="." index="0" unique_id=1144893341]
 transform = Transform3D(3.5762787e-05, 105.05605, 3.7402166e-05, -99.99999, 3.7570975e-05, 1.0919306e-11, -1.4210855e-12, -2.0455167e-05, 192.09447, 0.69068927, 83.23544, -0.46702576)
+material_override = SubResource("ShaderMaterial_3ac6c")
 mesh = SubResource("ArrayMesh_3ac6c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2039290501]

@@ -5,6 +5,9 @@ extends CharacterBody3D
 @onready var vision_ray: RayCast3D = $VisionRay
 @onready var presence_area: Area3D = $PresenceArea
 @onready var target = null
+@onready var enemy_fade: ColorRect = $CanvasLayer/EnemyFade
+@onready var bgm_player: AudioStreamPlayer = get_tree().current_scene.get_node("MusicPlayer")
+@onready var chase_player: AudioStreamPlayer = get_tree().current_scene.get_node("MusicPlayerChase")
 
 @export var patrol_points_1: Array[Node3D] = []
 @export var patrol_points_2: Array[Node3D] = []
@@ -14,6 +17,11 @@ extends CharacterBody3D
 
 @export var speed_walk: float = 1.7
 @export var speed_run: float = 3.0
+
+# NOVO: controle da velocidade da animação
+@export var walk_anim_speed: float = 1.0
+@export var run_anim_speed: float = 1.8
+
 @export var attack_range: float = 2.0
 @export var investigate_wait_time: float = 4.0
 @export var patrol_wait_time: float = 3.0
@@ -23,6 +31,8 @@ extends CharacterBody3D
 
 # TOLERÂNCIA DE DISTÂNCIA DA POSIÇÃO DE INVESTIGAÇÃO
 @export var investigate_reach_distance: float = 3
+
+@export var fade_time: float = 1.2
 
 const VIEW_ANGLE: float = 190.0
 const SMOOTHING_FACTOR = 0.2
@@ -43,6 +53,7 @@ var current_patrol_group: Array[Node3D] = []
 var current_patrol_group_number: int = 1
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var can_trigger_chase_music := false
 
 # SISTEMA DE STEALTH DO JOGADOR
 var player_is_hidden: bool = false
@@ -87,19 +98,20 @@ func _load_patrol_routes() -> void:
 
 # INICIALIZAÇÃO DO INIMIGO
 func _ready() -> void:
-	# carrega player automaticamente
 	target = _find_player()
-
-	# carrega rotas automaticamente
 	_load_patrol_routes()
 
-	# fallback seguro
 	if patrol_points_1.is_empty():
 		print("Aviso: rota 1 vazia ou inexistente")
 
 	_set_patrol_group(patrol_points_1, 1)
-
 	_enter_state(State.IDLE if current_patrol_group.is_empty() else State.PATROL)
+
+	_play_from_start(bgm_player)
+	bgm_player.volume_db = 0
+	
+	await get_tree().create_timer(5.0).timeout
+	can_trigger_chase_music = true
 
 
 # LOOP PRINCIPAL DE FÍSICA
@@ -159,7 +171,6 @@ func _state_patrol(delta: float) -> void:
 func _state_investigate(delta: float) -> void:
 	var dist = _flat_distance(global_position, investigate_position)
 
-	# ALTERADO: usa o offset configurável
 	if dist > investigate_reach_distance:
 		_move(speed_walk)
 		investigate_timer = investigate_wait_time
@@ -207,15 +218,11 @@ func _state_attack() -> void:
 	if target and target.has_method("freeze_input"):
 		target.freeze_input()
 
-	var fade = get_tree().current_scene.get_node_or_null("CanvasLayer/FadeInOut")
-
 	await get_tree().create_timer(0.2).timeout
 
-	if fade:
-		fade.fade_in(1.5)
-		await fade.wait_finished()
-
-	await get_tree().create_timer(0.8).timeout
+	if enemy_fade:
+		enemy_fade.fade_in(1.5)
+		await enemy_fade.wait_finished()
 
 	get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 
@@ -249,6 +256,12 @@ func _move(speed: float) -> void:
 func _walk_to(next_pos: Vector3, speed: float) -> void:
 	anim.play("Move")
 
+	# NOVO: controla velocidade da animação
+	if speed == speed_run:
+		anim.speed_scale = run_anim_speed
+	else:
+		anim.speed_scale = walk_anim_speed
+
 	var dir = next_pos - global_position
 	dir.y = 0
 
@@ -277,13 +290,18 @@ func _enter_state(new_state: State) -> void:
 		State.PATROL:
 			patrol_timer = patrol_wait_time
 			_update_agent_target()
+			
+			await get_tree().create_timer(1.5).timeout
+			_return_to_normal_music()
 
 		State.INVESTIGATE:
 			investigate_timer = investigate_wait_time
 			agent.set_target_position(investigate_position)
+			_start_investigate_music()
 
 		State.CHASE:
 			return_position = global_position
+			_start_chase_music()
 
 		State.ATTACK:
 			is_attacking = false
@@ -415,3 +433,52 @@ func _apply_gravity(delta: float) -> void:
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0.0
+
+
+# SISTEMA DE MÚSICA
+func _fade_audio(player: AudioStreamPlayer, target_db: float, time: float) -> void:
+	var start_db = player.volume_db
+	var t := 0.0
+
+	while t < time:
+		t += get_process_delta_time()
+		var lerp_t = t / time
+		player.volume_db = lerp(start_db, target_db, lerp_t)
+		await get_tree().process_frame
+
+	player.volume_db = target_db
+
+
+func _play_from_start(player: AudioStreamPlayer) -> void:
+	player.stop()
+	player.play(0.0)
+
+
+func _start_chase_music() -> void:
+	if not can_trigger_chase_music:
+		return
+
+	_play_from_start(chase_player)
+	chase_player.volume_db = -80
+	_fade_audio(chase_player, 0.0, fade_time)
+
+	_fade_audio(bgm_player, -80.0, fade_time)
+
+
+func _start_investigate_music() -> void:
+	if not can_trigger_chase_music:
+		return
+	if chase_player.playing:
+		_fade_audio(chase_player, -10.0, fade_time)
+
+
+func _return_to_normal_music() -> void:
+	if not can_trigger_chase_music:
+		return
+	if chase_player.playing:
+		await _fade_audio(chase_player, -80.0, fade_time)
+		chase_player.stop()
+
+	_play_from_start(bgm_player)
+	bgm_player.volume_db = -80
+	_fade_audio(bgm_player, 0.0, fade_time)

@@ -42,25 +42,29 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -672.0
-offset_top = -56.0
-offset_right = 224.0
-offset_bottom = 616.0
+offset_left = -376.0
+offset_top = -24.0
+offset_right = 520.0
+offset_bottom = 648.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4200003, 0.4200003)
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer" unique_id=1856931714]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ResetButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=1263104683]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("3_5fq7v")
 texture_pressed = ExtResource("4_1ye5n")
 texture_hover = ExtResource("5_5dsns")
 
 [node name="MenuQuitButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=141357471]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("6_xlh57")
 texture_pressed = ExtResource("7_kjj73")
 texture_hover = ExtResource("8_otmnh")

@@ -2,6 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://b426c8wb24e23" path="res://models/map/import/balanço_e_escalada.fbx" id="1_djket"]
 [ext_resource type="Texture2D" uid="uid://d0d4g1tia5rpp" path="res://models/map/area2/Balanço_e_escalada.png" id="2_3o5wo"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_i3keg"]
+[ext_resource type="Texture2D" uid="uid://bv78x02d31pnj" path="res://models/map/area3/Telha branca.png" id="4_s5i3u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvg2i"]
+render_priority = 0
+shader = ExtResource("2_i3keg")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_3o5wo")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.50000002375
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djket"]
 resource_name = "Brinquedo"
@@ -46,6 +57,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mxf30")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mri7c"]
+render_priority = 0
+shader = ExtResource("2_i3keg")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("4_s5i3u")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_gadik"]
 size = Vector3(4.4, 1.6, 1)
 
@@ -54,10 +74,12 @@ transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 
 [node name="Brinquedo" parent="." index="0" unique_id=487000940]
 transform = Transform3D(163.40393, 0, 0, 0, -2.3841858e-05, 32.537014, 0, -99.99999, -7.75743e-06, -57.84329, 18.79396, 0)
+material_override = SubResource("ShaderMaterial_fvg2i")
 mesh = SubResource("ArrayMesh_3o5wo")
 
 [node name="Corda" parent="." index="1" unique_id=1469087281]
 transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, -59.235325, 40.66124, 0)
+material_override = SubResource("ShaderMaterial_mri7c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=967731786]
 transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, 0, 0, 0)

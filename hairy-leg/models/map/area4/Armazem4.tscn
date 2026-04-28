@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://d27x7s36ec0s0" path="res://models/map/import/Armazem 4.fbx" id="1_tplpv"]
 [ext_resource type="Texture2D" uid="uid://b6akyhbrosxit" path="res://models/map/area4/Armazem_texture 4.png" id="2_478h1"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_m3nre"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qku2j"]
+render_priority = 0
+shader = ExtResource("2_m3nre")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_478h1")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3nre"]
 resource_name = "Armazem.002"
@@ -51,6 +61,7 @@ size = Vector3(1, 0.74505615, 1)
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [node name="Armazem" parent="." index="0" unique_id=1506589121]
+material_override = SubResource("ShaderMaterial_qku2j")
 mesh = SubResource("ArrayMesh_qku2j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2099136945]

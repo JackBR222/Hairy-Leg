@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://m072qfiuqf3i" path="res://models/map/import/Fogueira.fbx" id="1_y1dqk"]
 [ext_resource type="Texture2D" uid="uid://d0d4g1tia5rpp" path="res://models/map/area2/Balanço_e_escalada.png" id="2_gt2ap"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_vaabo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkb01"]
+render_priority = 0
+shader = ExtResource("2_vaabo")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_gt2ap")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bwvc"]
 resource_name = "Fogueira"
@@ -52,7 +62,8 @@ size = Vector3(0.9536133, 0.82177734, 1.2980957)
 [node name="Fogueira" unique_id=321288600 instance=ExtResource("1_y1dqk")]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 
-[node name="Fogueira" parent="." index="0" unique_id=638930541]
+[node name="Fogueira" parent="." index="0" unique_id=699317853]
+material_override = SubResource("ShaderMaterial_fkb01")
 mesh = SubResource("ArrayMesh_u482x")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=321318742]

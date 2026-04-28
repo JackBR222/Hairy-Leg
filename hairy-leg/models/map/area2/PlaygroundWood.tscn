@@ -1,7 +1,17 @@
 [gd_scene format=4 uid="uid://bp1ffv7lwtjlf"]
 
 [ext_resource type="PackedScene" uid="uid://b6ku4xfr03wf5" path="res://models/map/import/Playgroundwood.fbx" id="1_hk0gf"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_sx7pk"]
 [ext_resource type="Texture2D" uid="uid://ce2kdbdm3von0" path="res://models/map/area2/Playground_texture.png" id="2_xd4or"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2dy8"]
+render_priority = 0
+shader = ExtResource("2_sx7pk")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_xd4or")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_veoi1"]
 resource_name = "Playground"
@@ -53,6 +63,7 @@ size = Vector3(1.7, 0.74975586, 0.90000004)
 
 [node name="Playground" parent="." index="0" unique_id=1803785662]
 transform = Transform3D(-1.4954805e-06, -5.4835925e-07, 300, -12.545, 9.471212e-07, -3.5762787e-05, -9.4712107e-07, -12.545, -1.3113417e-05, 0, 0, 1)
+material_override = SubResource("ShaderMaterial_s2dy8")
 mesh = SubResource("ArrayMesh_pqnc3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=136284438]

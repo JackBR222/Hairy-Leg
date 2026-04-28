@@ -1,0 +1,6 @@
+if {player_item_type} == "FuseBoxKey":
+	Abriu!
+	[signal arg="reveal:ItemTest"]
+	[signal arg="consume:FuseBoxKey"]
+else:
+	Uma caixa de fusíveis... Falta um fusível...

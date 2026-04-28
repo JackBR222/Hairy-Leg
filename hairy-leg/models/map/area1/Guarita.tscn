@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://cgk64rxfee3gj" path="res://models/map/import/Guarita.fbx" id="1_ohyas"]
 [ext_resource type="Texture2D" uid="uid://b0ug4p5kux37v" path="res://models/map/area1/Guarita_texture.png" id="2_m133m"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_xhv1q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tfiu2"]
+render_priority = 0
+shader = ExtResource("2_xhv1q")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_m133m")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu1y7"]
 resource_name = "Guarita"
@@ -55,6 +65,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="Cube_006" parent="." index="0" unique_id=701838572]
 transform = Transform3D(4971.638, 4944.4487, 6.380255e-05, 0, -0.00030649372, 2069.915, 4944.4487, -4971.638, -6.41534e-05, 0, 98.5, 0)
+material_override = SubResource("ShaderMaterial_tfiu2")
 mesh = SubResource("ArrayMesh_148df")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=529574323]

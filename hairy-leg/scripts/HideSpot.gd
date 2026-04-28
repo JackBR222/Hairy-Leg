@@ -13,7 +13,7 @@ class_name HideSpot
 @onready var vignette = get_tree().current_scene.get_node("CanvasLayer/Vignette")
 @onready var icon: Sprite3D = $InteractionIcon
 
-var hidden_player: Player = null
+var hidden_player: PlayerController = null
 var player_footsteps: Node = null
 
 var original_distance: float
@@ -41,7 +41,7 @@ func _find_hide_point() -> MeshInstance3D:
 
 # INTERAÇÃO 
 func interact(player: Node) -> void:
-	if not player is Player or not can_interact:
+	if not player is PlayerController or not can_interact:
 		return
 
 	can_interact = false
@@ -65,7 +65,7 @@ func set_targeted(value: bool) -> void:
 
 
 # ESCONDER
-func hide_player(player: Player) -> void:
+func hide_player(player: PlayerController) -> void:
 	hidden_player = player
 
 	if hide_point:

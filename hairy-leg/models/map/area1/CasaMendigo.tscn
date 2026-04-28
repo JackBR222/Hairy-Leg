@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://b30obiki5yff1" path="res://models/map/import/CasaMendigo.fbx" id="1_xr7dx"]
 [ext_resource type="Texture2D" uid="uid://dgkjs3o4a2f8i" path="res://models/map/area1/Casa_mendigo.png" id="2_4epcu"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_7xiry"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r08cq"]
+render_priority = 0
+shader = ExtResource("2_7xiry")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_4epcu")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odnr6"]
 resource_name = "Material.003"
@@ -55,7 +65,8 @@ size = Vector3(1, 0.43156433, 1)
 [node name="CasaMendigo" unique_id=364126409 instance=ExtResource("1_xr7dx")]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 
-[node name="teto" parent="." index="0" unique_id=1499270653]
+[node name="teto" parent="." index="0" unique_id=1278472450]
+material_override = SubResource("ShaderMaterial_r08cq")
 mesh = SubResource("ArrayMesh_blhy7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1460305747]

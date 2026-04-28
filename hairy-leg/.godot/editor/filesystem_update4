@@ -1,10 +1,5 @@
-res://scenes/test/InteractTest.tscn
+res://scenes/Game.scn
 res://scripts/shaders/PS1 Model.gdshader
 res://sprites/ShinyAnim.tres
-res://models/map/Grade.tscn
-res://scenes/Game.scn
-res://models/map/PortaoAberto.tscn
-res://models/map/PortaoAnimado.tscn
-res://scenes/GameOver.tscn
-res://models/map/PortaoFechado.tscn
-res://scripts/GateController.gd
+res://scripts/MainMenu.gd
+res://scripts/PauseMenu.gd

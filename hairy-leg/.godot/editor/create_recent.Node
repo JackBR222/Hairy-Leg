@@ -1,4 +1,11 @@
+Label
 Node3D
+AudioStreamPlayer
+CanvasLayer
+Control
+Node
+HSlider
+CollisionPolygon3D
 BoneAttachment3D
 CollisionShape3D
 StaticBody3D
@@ -6,9 +13,3 @@ NavigationRegion3D
 GridContainer
 ScrollContainer
 TextureButton
-Control
-TextureRect
-ColorRect
-VBoxContainer
-MeshInstance3D
-Button

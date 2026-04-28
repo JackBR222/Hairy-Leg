@@ -1,7 +1,17 @@
 [gd_scene format=4 uid="uid://bp7tsc8qpdgpa"]
 
 [ext_resource type="PackedScene" uid="uid://c56h7uk6v7fiq" path="res://models/map/import/Portao Aberto.fbx" id="1_2r8dg"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="2_63fqa"]
 [ext_resource type="Texture2D" uid="uid://dcxq4xkjdcwi6" path="res://models/map/Grade_texture.png" id="2_ym6k8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utp55"]
+render_priority = 0
+shader = ExtResource("2_63fqa")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_ym6k8")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r8dg"]
 resource_name = "Grade.001"
@@ -53,6 +63,7 @@ size = Vector3(1.6748657, 44.51172, 41.61076)
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 
 [node name="portao" parent="." index="0" unique_id=1987450010]
+material_override = SubResource("ShaderMaterial_utp55")
 mesh = SubResource("ArrayMesh_ym6k8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1644467880]

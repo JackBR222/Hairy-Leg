@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name Player
+class_name PlayerController
 
 # ESTADO
 var is_hidden: bool = false
@@ -123,6 +123,9 @@ func _start_quick_turn() -> void:
 	is_quick_turning = true
 	target_rotation_y = rotation_degrees.y + 180.0
 	target_rotation_y = fmod(target_rotation_y, 360.0)
+	
+	velocity.x = 0.0
+	velocity.z = 0.0
 
 
 # ROTATION
@@ -143,6 +146,11 @@ func _apply_rotation(delta: float) -> void:
 
 # MOVIMENTO
 func _apply_movement() -> void:
+	if is_quick_turning:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		return
+
 	var speed = walk_speed
 
 	if input_running and input_forward > 0.1:

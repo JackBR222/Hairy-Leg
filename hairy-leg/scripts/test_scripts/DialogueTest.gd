@@ -1,14 +1,14 @@
 extends StaticBody3D
 
-var current_player: Player = null
+var current_player: PlayerController = null
 
 
 # INTERAÇÃO
 func interact(player: Node) -> void:
-	if not player is Player:
+	if not player is PlayerController:
 		return
 
-	current_player = player as Player
+	current_player = player as PlayerController
 	start_dialog()
 
 

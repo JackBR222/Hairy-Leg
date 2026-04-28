@@ -2,6 +2,8 @@ extends RigidBody3D
 class_name Item
 
 @export var item_type: String = "generic"
+@export var start_invisible: bool = false
+
 @export var hold_offset: Vector3 = Vector3(0.35, -0.35, -0.9)
 @export var hold_rotation: Vector3 = Vector3(-15, 45, 0)
 
@@ -20,14 +22,29 @@ var original_rotation: Vector3
 var is_targeted: bool = false
 var glow_time: float = 0.0
 
-var holder: Player = null
+var holder: PlayerController = null
 
 var pulse_timer: float = 0.0
 var pulse_visible: bool = false
 
+var item_visible: bool = true
+
 @onready var icon: Sprite3D = $InteractionIcon
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var glow_sprite: AnimatedSprite3D = $GlowPulse
+
+
+# REGISTRO GLOBAL (pra Dialogic encontrar o item)
+static var item_registry: Dictionary = {}
+
+
+func _enter_tree() -> void:
+	item_registry[item_type] = self
+
+
+func _exit_tree() -> void:
+	if item_registry.has(item_type):
+		item_registry.erase(item_type)
 
 
 func _ready() -> void:
@@ -38,7 +55,10 @@ func _ready() -> void:
 	icon.visible = false
 	glow_sprite.visible = false
 	glow_sprite.play()
-	
+
+	if start_invisible:
+		set_item_visible(false)
+
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 
 
@@ -49,7 +69,7 @@ func _process(delta: float) -> void:
 
 # FEEDBACK VISUAL
 func _update_glow(delta: float) -> void:
-	if is_being_held:
+	if is_being_held or not item_visible:
 		return
 
 	glow_time += delta * glow_speed
@@ -61,7 +81,7 @@ func _update_glow(delta: float) -> void:
 
 # PULSE VISUAL
 func _update_pulse(delta: float) -> void:
-	if is_being_held:
+	if is_being_held or not item_visible:
 		glow_sprite.visible = false
 		return
 
@@ -81,12 +101,29 @@ func _update_pulse(delta: float) -> void:
 
 func set_targeted(state: bool) -> void:
 	is_targeted = state
-	icon.visible = state and not is_being_held
+	icon.visible = state and not is_being_held and item_visible
+
+
+# VISIBILIDADE
+func set_item_visible(value: bool) -> void:
+	item_visible = value
+
+	if mesh:
+		mesh.visible = value
+
+	if glow_sprite:
+		glow_sprite.visible = value and not is_being_held
+
+	if icon:
+		icon.visible = value and is_targeted and not is_being_held
 
 
 # INTERAÇÃO PRINCIPAL
 func interact(player: Node) -> void:
-	if not player is Player:
+	if not item_visible:
+		return
+
+	if not player is PlayerController:
 		return
 
 	set_targeted(false)
@@ -99,8 +136,37 @@ func interact(player: Node) -> void:
 		_update_dialogic(player)
 
 
+# DIALOGIC SISTEMA DE SINAL
+func _on_dialogic_signal(argument: String) -> void:
+	# formato esperado:
+	# "reveal:key_item"
+	# "hide:key_item"
+
+	var parts = argument.split(":")
+	if parts.size() < 2:
+		return
+
+	var action = parts[0]
+	var target_type = parts[1]
+
+	if not item_registry.has(target_type):
+		return
+
+	var item = item_registry[target_type]
+
+	match action:
+		"reveal":
+			item.set_item_visible(true)
+
+		"hide":
+			item.set_item_visible(false)
+
+		"consume":
+			item.consume()
+
+
 # PEGAR ITEM
-func _pick_up(player: Player) -> void:
+func _pick_up(player: PlayerController) -> void:
 	is_being_held = true
 	freeze = true
 
@@ -134,7 +200,7 @@ func put_down(target_position: Vector3, target_rotation: Vector3 = Vector3.ZERO)
 
 
 # TROCA
-func _swap_with_player(player: Player) -> void:
+func _swap_with_player(player: PlayerController) -> void:
 	var current_item = player.held_item
 	if current_item == self:
 		return
@@ -160,13 +226,9 @@ func consume() -> void:
 	queue_free()
 
 
-# DIALOGIC
-func _update_dialogic(player: Player) -> void:
+# DIALOGIC VAR
+func _update_dialogic(player: PlayerController) -> void:
 	if player.held_item == null:
 		Dialogic.VAR.set("player_item_type", "none")
 	else:
 		Dialogic.VAR.set("player_item_type", player.held_item.item_type)
-
-func _on_dialogic_signal(argument: String) -> void:
-	if argument == "consume_item":
-		consume()

@@ -18,18 +18,29 @@
 [ext_resource type="Texture2D" uid="uid://ct45axw46jdgh" path="res://sprites/menu/ButtonSelectConfig.png" id="13_2axsc"]
 [ext_resource type="Texture2D" uid="uid://5lfxbohd33" path="res://sprites/menu/ButtonPressQuit.png" id="15_wrgne"]
 [ext_resource type="Texture2D" uid="uid://v5yj1kgxd30q" path="res://sprites/menu/ButtonSelectQuit.png" id="16_hm0al"]
+[ext_resource type="Texture2D" uid="uid://1cmtmik2tsh6" path="res://sprites/menu/ButtonMenu.png" id="17_viowm"]
+[ext_resource type="Texture2D" uid="uid://df0qfwm3dmsq" path="res://sprites/menu/ButtonPressMenu.png" id="18_1n6yq"]
+[ext_resource type="Texture2D" uid="uid://bqf6j5315qy84" path="res://sprites/menu/ButtonSelectMenu.png" id="19_yovvs"]
 
 [node name="Node3D" type="Node3D" unique_id=1642647240]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=875875823 node_paths=PackedStringArray("menu_background", "fade_overlay", "scroll_container", "vbox_container", "options_panel", "options_back_button", "any_press_start")]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1073270735]
+stream = ExtResource("5_l72w3")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=875875823 node_paths=PackedStringArray("menu_background", "fade_overlay", "scroll_container", "vbox_container", "options_panel", "options_back_button", "any_press_start", "music_slider", "sfx_slider")]
 script = ExtResource("1_826wr")
 menu_background = NodePath("MenuBackground")
 fade_overlay = NodePath("FadeOverlay")
 scroll_container = NodePath("ScrollContainer")
 vbox_container = NodePath("ScrollContainer/VBoxContainer")
 options_panel = NodePath("OptionsPanel")
-options_back_button = NodePath("OptionsPanel/ScrollContainer/GridContainer/BackButton")
+options_back_button = NodePath("OptionsPanel/BottomLeft/BackButton")
 any_press_start = NodePath("AnyPressStart")
+music_slider = NodePath("OptionsPanel/Center/MusicSlider")
+sfx_slider = NodePath("OptionsPanel/Center/SFXSlider")
 bg_press_start = ExtResource("2_2wh52")
 bg_main_menu = ExtResource("3_826wr")
 bg_options_menu = ExtResource("4_ucygd")
@@ -43,6 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ucygd")
 expand_mode = 1
+stretch_mode = 6
 
 [node name="FadeOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1575941849]
 z_index = 1
@@ -59,59 +71,140 @@ offset_top = -72.0
 offset_right = 1056.0
 offset_bottom = 600.0
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4200003, 0.4200003)
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer" unique_id=1540664654]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="StartButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=1023558913]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("4_7la6k")
 texture_pressed = ExtResource("6_tdapf")
 texture_hover = ExtResource("7_tdapf")
 
 [node name="ContinueButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=1303086118]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("6_8a8k8")
 texture_pressed = ExtResource("9_7shrw")
 texture_hover = ExtResource("10_viowm")
 
 [node name="OptionsButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=421868668]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("11_1n6yq")
 texture_pressed = ExtResource("12_yovvs")
 texture_hover = ExtResource("13_2axsc")
 
 [node name="QuitButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=31428697]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("5_mipys")
 texture_pressed = ExtResource("15_wrgne")
 texture_hover = ExtResource("16_hm0al")
 
-[node name="OptionsPanel" type="Control" parent="CanvasLayer" unique_id=2073063939]
+[node name="OptionsPanel" type="Control" parent="CanvasLayer" unique_id=75101475]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/OptionsPanel" unique_id=2127431886]
+[node name="BottomLeft" type="Control" parent="CanvasLayer/OptionsPanel" unique_id=48810032]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = 596.0
-offset_right = 768.0
-offset_bottom = 762.0
+offset_top = -40.0
+offset_right = 40.0
 grow_vertical = 0
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer/OptionsPanel/BottomLeft" unique_id=1540747470]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -82.5
+offset_right = 767.0
+offset_bottom = 82.5
+grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture_normal = ExtResource("17_viowm")
+texture_pressed = ExtResource("18_1n6yq")
+texture_hover = ExtResource("19_yovvs")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/OptionsPanel/ScrollContainer" unique_id=53608532]
-layout_mode = 2
+[node name="Center" type="Control" parent="CanvasLayer/OptionsPanel" unique_id=1107349539]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="BackButton" type="TextureButton" parent="CanvasLayer/OptionsPanel/ScrollContainer/GridContainer" unique_id=1540747470]
-layout_mode = 2
-texture_normal = ExtResource("5_mipys")
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/OptionsPanel/Center" unique_id=2061518394]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -88.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+mouse_filter = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/OptionsPanel/Center" unique_id=1521033021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 104.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+mouse_filter = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/Center" unique_id=2130314697]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -108.0
+offset_right = 50.0
+offset_bottom = -85.0
+text = "MÚSICA"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/OptionsPanel/Center" unique_id=1595761634]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 84.0
+offset_right = 50.0
+offset_bottom = 107.0
+text = "SFX"
+horizontal_alignment = 1
 
 [node name="AnyPressStart" type="TextureRect" parent="CanvasLayer" unique_id=735738868]
 anchors_preset = 7
@@ -128,13 +221,8 @@ grow_vertical = 0
 texture = ExtResource("3_ow34m")
 expand_mode = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1073270735]
-stream = ExtResource("5_l72w3")
-volume_db = -15.0
-autoplay = true
-
 [connection signal="pressed" from="CanvasLayer/ScrollContainer/VBoxContainer/StartButton" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ScrollContainer/VBoxContainer/ContinueButton" to="CanvasLayer" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ScrollContainer/VBoxContainer/OptionsButton" to="CanvasLayer" method="_on_options_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ScrollContainer/VBoxContainer/QuitButton" to="CanvasLayer" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/OptionsPanel/ScrollContainer/GridContainer/BackButton" to="CanvasLayer" method="_on_options_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/BottomLeft/BackButton" to="CanvasLayer" method="_on_options_back_button_pressed"]

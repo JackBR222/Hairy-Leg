@@ -2,7 +2,18 @@
 
 [ext_resource type="Script" uid="uid://c3lsvvvnai66p" path="res://scripts/EnemyAI.gd" id="1_pqsom"]
 [ext_resource type="Texture2D" uid="uid://dpxclh50up8cf" path="res://models/Perna_texture.png" id="2_duu5m"]
-[ext_resource type="AudioStream" uid="uid://ch28syaqihthv" path="res://audio/RE2 OST - Tyrant.mp3" id="3_hgomy"]
+[ext_resource type="Script" uid="uid://cqtr3kwn8vr7p" path="res://scripts/FadeController.gd" id="2_hgomy"]
+[ext_resource type="Shader" uid="uid://c2jh875a4nmd6" path="res://scripts/shaders/PS1 Model.gdshader" id="3_hgomy"]
+[ext_resource type="Script" uid="uid://ddy8rcujxemb5" path="res://scripts/EnemyFootsteps.gd" id="3_pqsom"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oovrp"]
+render_priority = 0
+shader = ExtResource("3_hgomy")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("2_duu5m")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.50000002375
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixx2p"]
 resource_name = "Material"
@@ -73,9 +84,9 @@ bind/4/name = &"Bone.004"
 bind/4/bone = -1
 bind/4/pose = Transform3D(0.1548714, 2.6955662e-09, -3.7117644e-08, 2.2135818e-10, 0.15451671, 0.010475716, 3.6949547e-08, -0.010475717, 0.1545167, -0.14413829, -0.29596925, 0.19107136)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_a7hxv"]
-height = 2.75
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pqsom"]
 radius = 1.0
+height = 2.578003
 
 [sub_resource type="Animation" id="Animation_kjkie"]
 resource_name = "Armature|Move"
@@ -181,7 +192,24 @@ radius = 7.0
 [node name="Enemy" type="CharacterBody3D" unique_id=1963610167]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_pqsom")
-investigate_reach_distance = 3.5
+speed_walk = 3.0
+speed_run = 5.0
+run_anim_speed = 1.2
+investigate_wait_time = 2.0
+patrol_wait_time = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1892115294]
+
+[node name="EnemyFade" type="ColorRect" parent="CanvasLayer" unique_id=2106049061]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_hgomy")
+metadata/_edit_use_anchors_ = true
 
 [node name="Perna Cabeluda" type="Node3D" parent="." unique_id=918804690]
 transform = Transform3D(-6, 4.5856453e-14, 5.2453663e-07, 0, -6, 5.2453663e-07, 5.2453663e-07, 5.2453663e-07, 6, 0, 0.35, 0)
@@ -240,23 +268,20 @@ bones/6/rotation = Quaternion(0, 0, 0, 1)
 bones/6/scale = Vector3(1, 1, 1)
 
 [node name="Cone" type="MeshInstance3D" parent="Perna Cabeluda/Armature/Skeleton3D" unique_id=830719892]
+material_override = SubResource("ShaderMaterial_oovrp")
 mesh = SubResource("ArrayMesh_owiiy")
 skin = SubResource("Skin_r667m")
 skeleton = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2118435755]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0)
-shape = SubResource("CylinderShape3D_a7hxv")
+transform = Transform3D(1, 7.84227e-10, -7.034373e-12, -7.84227e-10, 0.99983907, -0.017941022, -7.034373e-12, 0.017941022, 0.99983907, 2.0366735e-10, 1.2872506, 0.004659366)
+shape = SubResource("CapsuleShape3D_pqsom")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1486153960]
 
 [node name="VisionRay" type="RayCast3D" parent="." unique_id=1742632884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 0, -12)
-
-[node name="AudioChase" type="AudioStreamPlayer" parent="." unique_id=514335078]
-stream = ExtResource("3_hgomy")
-volume_db = -28.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1876285247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -274,3 +299,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PresenceArea" unique_id=1032293433]
 shape = SubResource("SphereShape3D_mo45p")
+
+[node name="FootstepEnemy" type="AudioStreamPlayer3D" parent="." unique_id=17563526 node_paths=PackedStringArray("enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004026532, 0)
+volume_db = 15.0
+unit_size = 8.5
+max_distance = 75.0
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 4000.0
+script = ExtResource("3_pqsom")
+enemy = NodePath("..")
+
+[node name="RayCast3D" type="RayCast3D" parent="FootstepEnemy" unique_id=463990941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99597347, 0)
+target_position = Vector3(0, -1.5, 0)
